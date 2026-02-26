@@ -115,5 +115,35 @@ EXTRA->>>>>>>>>
 					https://youtu.be/NxqE8pPzdZg?si=FlVkCs2lv9XtC5tZ -- 4
 					 - YouTube
 					Enjoy the videos and music you love, upload original content, and share it all with friends, family, and the world on YouTube.
+
+					in package.json
+
+					"cds": {
+    "requires": {
+      "[development]":{
+        "auth":{
+          "kind": "mocked",
+          "users": {
+            "deep@gmail.com":{
+              "password": "12345",
+              "roles": ["manager"]
+            },
+            "deep@sap.com":{
+              "password": "12345",
+              "roles": ["user"]
+            }
+          }
+        }
+      },
+      "[production]": {
+        "db": "hana",
+        "auth": "xsuaa"
+      },
+      "[hybrid]": {
+        "db": "hana"
+      }
+    }
+  }
+
 					 
  
