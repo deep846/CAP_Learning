@@ -145,5 +145,16 @@ EXTRA->>>>>>>>>
     }
   }
 
+
+
+
+
+
+
+  CAP learning Playlist:
+
+  https://www.youtube.com/@ABAPExplained/playlists
+  https://www.youtube.com/@anybodycancode-b5v
+
 					 
  
