@@ -156,5 +156,23 @@ EXTRA->>>>>>>>>
   https://www.youtube.com/@ABAPExplained/playlists
   https://www.youtube.com/@anybodycancode-b5v
 
+
+
+	CAP learning 
+
+	Please find the below link to access the training :
+		https://learning.sap.com/learning-journeys/building-side-by-side-extensions-on-sap-btp
+
+
+	Please find the below link to access the training :
+
+	Building Side-by-Side Extensions on SAP BTP
+
+	Please find the below link to access additional link:
+
+	https://help.sap.com/docs/btp/sap-business-technology-platform/developing-with-sap-cloud-application-programming-model
+	
+	https://help.sap.com/docs/btp/btp-developers-guide/tutorials-for-sap-cloud-application-programming-model
+
 					 
  
