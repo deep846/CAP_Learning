@@ -174,5 +174,10 @@ EXTRA->>>>>>>>>
 	
 	https://help.sap.com/docs/btp/btp-developers-guide/tutorials-for-sap-cloud-application-programming-model
 
+
+	Best learning for CAP:
+
+	https://www.youtube.com/playlist?list=PL3Q8uML_MhIg3x6lWB4KY_qaGQPaVFG_R
+
 					 
  
