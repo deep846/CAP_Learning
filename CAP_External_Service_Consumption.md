@@ -53,7 +53,6 @@ cds import srv/external/API_BUSINESS_PARTNER.edmx
         "kind": "odata",
         "model": "srv/external/employeedata",
         "credentials": {
-          "path": "/c2995fa0-27fe-48a1-afb3-5bb26ebdd4fc.employeemanagement.employeemanagement-0.0.1/odata/v4/employee",
           "destination": "empmanagement-destination-dest",
           "requestTimeout": 30000000
         }
@@ -156,3 +155,24 @@ COMMANSA :-------->
         cds bind --to services-db:studentService
 
 
+
+
+
+
+external connection with a XSUAA enabled service
+
+
+destination configuration--->
+              ![alt text](image-4.png)
+              ![alt text](image-5.png)
+
+and in package.json configuration
+
+                    "employeedata": {
+                          "kind": "odata",
+                          "model": "srv/external/employeedata",
+                          "credentials": {
+                            "destination": "empmanagement-destination-dest",
+                            "requestTimeout": 30000000
+                          }
+                        },
