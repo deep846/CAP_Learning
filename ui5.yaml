@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+specVersion: "4.0"
+metadata:
+  name: project1
+type: application
+
+server:
+  customMiddleware:
+    # --- ONLY 8090: inject Basic Auth so the popup disappears ---
+    - name: ui5-middleware-simpleproxy
+      afterMiddleware: compression
+      mountPath: /secureservice
+      configuration:
+        baseUri: http://localhost:8090/odata/v4/employee/   # service root (note trailing /)
+        username: "deep@gmail.com"                          # your ID
+        password: "12345"                                   # your password
+        # If 8090 runs HTTPS with self-signed certs in DEV:
+        # baseUri: https://localhost:8090/odata/v4/employee/
+        # strictSSL: false
+
+    # --- Everything else stays on fiori-tools-proxy ---
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertErrors: true
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - path: /api
+            pathReplace: /odata/v4/student
+            url: http://localhost:4004
+          - path: /functiondd
+            pathReplace: /odata/v4/functionand-action
+            url: http://localhost:8070
+          # /secureservice handled by simpleproxy above (do not duplicate here)
+          - path: /external
+            pathReplace: /odata/v4/buisness
+            url: http://localhost:8060
+
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        flp:
+          theme: sap_horizon
