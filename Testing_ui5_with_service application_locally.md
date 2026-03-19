@@ -1,3 +1,6 @@
+look into this : https://github.com/deep846/ui5_to_cap_local_testing for testing
+
+
 1. in the ui5 project in the project root terminal run the below command
                     
                     npm i -D ui5-middleware-simpleproxy
