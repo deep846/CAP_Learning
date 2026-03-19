@@ -16,7 +16,7 @@
                   afterMiddleware: compression
                   configuration:
                     backend:
-                        - path: /api                         ----------------> 1st testing external service local
+                        - path: /api        # (name_used_in_regiser_service_in_manifestl.json)  ---------> 1st testing external service local
                           pathReplace: /odata/v4/student
                           url: http://localhost:4004
 
@@ -53,9 +53,94 @@
 
                     # --- Everything else stays on fiori-tools-proxy ---
 
+5. configure your your manifest.json of the application.
 
-5. after that do 
+            -----> first under your sap.app ------> under datasources ----> register your services defined in ui5.yaml
+
+                  "sap.app": {
+                        "dataSources": {
+                            "mainService": {
+                                "uri": "/api/",  --------> add the name defined in ui5.yaml /<service_name>/ (it could be path or mountPath (for auth))
+                                "type": "OData",
+                                "settings": {
+                                "annotations": [],
+                                "odataVersion": "4.01"
+                                }
+                            },
+                            "secureservice": {
+                                "uri": "/secureservice/",           -----------> add the name defined in ui5.yaml /<service_name>/
+                                "type": "OData",
+                                "settings": {
+                                "annotations": [],
+                                "odataVersion": "4.01"
+                                }
+                            },
+                            "actionfuction": {
+                                "uri": "/functiondd/",      -----------> add the name defined in ui5.yaml /<service_name>/
+                                "type": "OData",
+                                "settings": {
+                                "annotations": [],
+                                "odataVersion": "4.01"
+                                }
+                            },
+                            "externalll": {
+                                "uri": "/external/",        -----------> add the name defined in ui5.yaml /<service_name>/
+                                "type": "OData",
+                                "settings": {
+                                "annotations": [],
+                                "odataVersion": "4.01"
+                                }
+                            }
+                        }
+
+                    },
+
+            ----> under sap.ui5 ---> under models ---> define your models to use it in your applicatioln
+
+                    "sap.ui5": {
+                        "models": {
+                        "": {                       ---> your mail model name (anything you want to keep it)
+                            "dataSource": "mainService",                      -------> add your services registered under sap.app -> datasource
+                            "preload": true,
+                            "settings": {
+                            "operationMode": "Server",
+                            "autoExpandSelect": true,
+                            "earlyRequests": true
+                            }
+                        },
+                        "secureservice":{
+                            "dataSource": "secureservice",
+                            "preload": true,
+                            "settings": {
+                            "operationMode": "Server",
+                            "autoExpandSelect": true,
+                            "earlyRequests": true
+                            }
+                        },
+                        "actionfuction":{
+                            "dataSource": "actionfuction",
+                            "preload": true,
+                            "settings": {
+                            "operationMode": "Server",
+                            "autoExpandSelect": true,
+                            "earlyRequests": true
+                            }
+                        },
+                        "externaltrio":{
+                            "dataSource": "externalll",
+                            "preload": true,
+                            "settings": {
+                            "operationMode": "Server",
+                            "autoExpandSelect": true,
+                            "earlyRequests": true
+                            }
+                        }
+                    }
+                }
+
+
+6. after that do 
             
                 npm i
 
-6. npm run start
+7. npm run start
