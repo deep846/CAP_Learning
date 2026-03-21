@@ -56,3 +56,9 @@
                         *************************************/
                         out_tab = select ID as id, NAME as name from DATAB_STUDENT;
                         END
+
+3. then you need to do 
+        
+        cds build
+        cds deploy --to hana
+        cds watch --profile hybrid
