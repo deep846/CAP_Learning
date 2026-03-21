@@ -1,11 +1,11 @@
 1. First loging to the with your DBADMIN to your HANA DB EXplorer then go to the instance ---> overview ---> users 
     see the below photo
 
-                ![alt text](image-9.png)
+    ![alt text](image-9.png)
     
 2. then first create a user (because you can't assign your self the debugger role)
 
-                ![alt text](image-10.png)
+    ![alt text](image-10.png)
 
 3. then logged in using the user you just created and for the first time it will ask for the password reset , reset the passwrod accordingly
 
@@ -68,7 +68,7 @@
 
     ![alt text](image-26.png)
 
-    
+
 
 
     
