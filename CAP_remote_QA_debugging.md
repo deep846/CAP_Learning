@@ -1,3 +1,6 @@
+https://community.sap.com/t5/technology-blog-posts-by-sap/set-up-remote-debugging-to-diagnose-cap-applications-node-js-stack-at/ba-p/13515376
+
+
 Below is the complete set of commands and configurations for remote debugging your CAP application.
 CAP_testremoteconnection.md
 markdown
