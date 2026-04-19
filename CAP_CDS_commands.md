@@ -19,6 +19,7 @@ Commands:
         cf deploy mta_archives/externalServicesConnections_1.0.0.mtar
 
 
+       cds compile srv/service.cds -2 xsuaa > xs-security.json
 
 
         cf cs destination lite externalservice-destination
@@ -29,7 +30,11 @@ Commands:
         cds bind --to externalservice-connectivity
         cds bind --to externalservice-db
         cds bind --to externalservice-destination
+       
 
+       cds bind --to externalservice-connectivity:key   
+       cds bind --to externalservice-db:key      
+       cds bind --to externalservice-destination:key
 
 
         cds bind --to services-db:studentService
