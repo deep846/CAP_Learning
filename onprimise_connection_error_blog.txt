@@ -1,0 +1,148 @@
+
+
+
+
+
+Home
+Calendar
+Reporting
+Dashboards
+Customer Success
+Finance & Legal
+Partner Solutions
+Partnership
+Portfolio & Products
+Sales & Marketing
+Services & Support
+Systems & Provisioning
+Users & Contacts
+Get Assistance
+Feedback
+Legal
+Status
+Mobile App
+/
+SAP Business Application Studio
+/
+CAP Tools extension (CA-BAS-CAP)
+3112360 - 502 error connecting to backend OData from CAP project in BAS
+SAP Knowledge Base Article, Version: 2, Released On: 14.06.2025
+
+
+
+
+
+Component
+CA-BAS-CAP
+Priority
+Normal
+Category
+Problem
+Release Status
+Released to Customer
+Rated Helpful
+(1 people)
+Quality Rating
+
+SAP Note/KBA Number
+
+Description
+Products
+Attributes
+Available Languages
+Rate this document
+Description
+Symptom
+Following error occurs when previewing CAP service (srv) application in BAS:
+
+<error xmlns=http://docs.oasis-open.org/odata/ns/metadata>
+
+<code>502</code>
+
+<message>Error during request to remote service: connect ETIMEDOUT 10.0.4.5:20003</message>
+
+</error>
+
+The odata connection is working correctly when the application is deployed to SAP Cloud Foundry.
+
+Environment
+SAP Business Application Studio
+
+Cloud Application Programming Model
+
+Reproducing the Issue
+create CAP project based on backend OData service
+preview the srv application using one of the following methods:
+create run configuration
+choose "Preview Application" from context menu
+execute "cds run" command in terminal
+open the preview in new window
+navigate to the collection pointing to backend odata service
+Cause
+CAP destination configuration is applied in the package.json. The Application Preview functionality picks up the destination configuration from the .env file or any other .envX file if configured through Run Configuration. 
+
+The BAS proxy, which is active while application preview, is listening on localhost and 8887 port. This proxy redirects the host name formatted "<destination name>.dest" through the destination with the same name.
+
+The debug console output shows the redirected requests, which should reflect the correct "<destinationname>.dest" pattern. The logged request can be also tested in BAS terminal using curl command line tool.
+
+For example:
+
+curl https://demodestination.dest/opu/odata/demoservice
+
+Please note: "cds watch" command does not use BAS proxy.
+
+Resolution
+Create destination with the proper configuration and name ("demodestination" in this example) in the same subaccount where BAS is running.  Doublecheck the destination using BAP Service Center
+
+Create/doublecheck the following part of the package.json configuration:
+
+"cds": {
+      ...
+      "backend_odata": {
+        "kind": "odata-v2",
+        "model": "srv/external/backend_odata",
+        "credentials": {
+          "destination": "demodestination"
+        }
+      }
+    }
+}
+Create/doublecheck the .env file configuration:
+
+destinations=[{"name":"demodestination","proxyHost":"http://127.0.0.1","proxyPort":"8887","url":"http://demodestination.dest"}]
+
+Use the following command in BAS terminal to reload subaccount destinations after changing destination settings in SAP BTP Cockpit:
+
+curl http://localhost:8887/reload
+
+See Also
+Creating Run Configurations for CAP Node Applications
+https://help.sap.com/viewer/9c36fdb911ae4cadab467a314d9e331f/Cloud/en-US/149f285d410642c291855258aa13a46d.html
+
+CAP - Using Destinations
+https://cap.cloud.sap/docs/guides/consuming-services#using-destinations
+
+Keywords
+node.js, CAP, preview, srv, service, odata, 502, BAS, SAP Business Application Studio, Business Application Studio, destination, cds, VCAP_SERVICES, .env, default-env.json
+
+Products
+Products
+SAP Cloud Portal service all versions	
+Attributes
+Key
+Value
+Alternative ID	KB0300997	
+Requires Action	0	
+Available Languages
+Deutsch (Machine Translation)
+日本語 (Machine Translation)
+Português (Machine Translation)
+Español (Machine Translation)
+Français (Machine Translation)
+Italiano (Machine Translation)
+Русский (Machine Translation)
+中文 (Machine Translation)
+한국어 (Machine Translation)
+Rate this document
+Was this KBA helpful?
+
